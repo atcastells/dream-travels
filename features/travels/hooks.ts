@@ -1,10 +1,12 @@
 import {
   QueryKey,
   UndefinedInitialDataOptions,
+  useMutation,
   useQuery,
+  useQueryClient,
 } from "@tanstack/react-query";
 import { Travel } from "./interfaces";
-import { getTravels } from "./service";
+import { getTravels, updateTravel } from "./service";
 
 export const TRAVEL_KEY = "travels";
 
@@ -19,4 +21,21 @@ export const useTravels = (
   });
 
   return { travels: data, ...rest };
+};
+
+export const useUpdateTravel = () => {
+  const queryClient = useQueryClient();
+  const { mutate, mutateAsync } = useMutation({
+    mutationFn: updateTravel,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [TRAVEL_KEY],
+      });
+    },
+  });
+
+  return {
+    updateTravel: mutate,
+    updateTravelAsync: mutateAsync,
+  };
 };

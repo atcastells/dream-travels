@@ -1,9 +1,9 @@
 import classNames from "classnames";
 import { DetailedHTMLProps, InputHTMLAttributes } from "react";
 
-export type InputProps = DetailedHTMLProps<
-  InputHTMLAttributes<HTMLInputElement>,
-  HTMLInputElement
+export type TextAreaProps = DetailedHTMLProps<
+  InputHTMLAttributes<HTMLTextAreaElement>,
+  HTMLTextAreaElement
 > & {
   label?: string;
   error?: string;
@@ -13,37 +13,33 @@ export type InputProps = DetailedHTMLProps<
   >;
 };
 
-export const Input = ({
+export const TextArea = ({
   error,
   label,
   containerProps,
   ...inputProps
-}: InputProps) => {
+}: TextAreaProps) => {
   return (
     <div
       {...containerProps}
       className={classNames(
-        "flex flex-col text-sm rounded-full",
+        "flex flex-col text-sm",
         containerProps?.className ? containerProps.className : ""
       )}
     >
       {label && <label className="text-sm mb-1">{label}</label>}
-
       <div
         className={classNames(
-          "flex rounded-full border bg-white border-gray-200 p-1",
+          "flex rounded-xl border bg-white border-gray-200 p-1",
           {
             "border-red-400": !!error,
           }
         )}
       >
-        <input
+        <textarea
           {...inputProps}
-          type="text"
-          className={classNames(
-            "rounded-full bg-white text-black px-2 outline-none w-full",
-            inputProps.className ? inputProps.className : ""
-          )}
+          className={classNames("bg-white text-black px-2 outline-none w-full")}
+          rows={4}
         />
       </div>
       {error && <div className="text-red-400 text-xs mt-2 ml-4">{error}</div>}

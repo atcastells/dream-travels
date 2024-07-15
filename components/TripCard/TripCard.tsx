@@ -15,16 +15,16 @@ export const TripCard = ({
 }: TripCardProps) => {
   return (
     <div className="flex flex-row h-60 bg-gray-100 rounded-r-lg">
-      <div className="w-1/2 relative">
+      <div className="w-3/4 md:w-1/2 relative">
         <img
           src={travel.photo_url}
           alt={travel.title}
           className="object-cover h-full w-full rounded-l-lg"
         />
       </div>
-      <div className="flex flex-col w-1/2 p-4">
+      <div className="flex flex-col w-3/4 md:w-1/2 p-4">
         <h1 className="text-3xl mb-8">{travel.title}</h1>
-        <p className="text-lg mb-8">
+        <p className="text-lg mb-4 line-clamp-3">
           Classic tour of Portugal's vibrant cities and cultural heritage,
           including Lisbon, Porto, Fatima and the flamboyant architecture of
           Sintra.

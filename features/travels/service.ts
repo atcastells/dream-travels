@@ -36,6 +36,6 @@ export const createTravel = async (travel: Travel): Promise<Travel> => {
 };
 
 export const updateTravel = async (travel: Travel): Promise<Travel> => {
-  const response = await apiInstance.put(`/travels/${travel.id}`, travel);
+  const response = await apiInstance.patch(`/travels/${travel.id}`, travel);
   return response.data;
 };

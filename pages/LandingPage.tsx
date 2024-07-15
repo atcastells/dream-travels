@@ -1,6 +1,11 @@
 import { TripCreationModal } from "@/components/TripCreationModal/TripCreationModal";
+import { TripDetailModal } from "@/components/TripDetailModal/TripDetailModal";
 import { useTravels } from "@/features/travels/hooks";
-import { Travel, TravelStatus } from "@/features/travels/interfaces";
+import {
+  Travel,
+  TravelCreation,
+  TravelStatus,
+} from "@/features/travels/interfaces";
 import { useState } from "react";
 import { ButtonGroup } from "../components/ButtonGroup/ButtonGroup";
 import { NavigationBar } from "../components/NavigationBar/NavigationBar";
@@ -19,6 +24,11 @@ export const LandingPage = () => {
   const [isTripCreationModalOpen, setIsTripCreationModalOpen] =
     useState<boolean>(false);
 
+  const [isTripDetailModalOpen, setIsTripDetailModalOpen] =
+    useState<boolean>(false);
+
+  const [tripSelected, setTripSelected] = useState<Travel | undefined>();
+
   const { travels } = useTravels(filters);
 
   const tripStatus = [
@@ -32,7 +42,8 @@ export const LandingPage = () => {
   };
 
   const handleTripDetail = (id: string) => {
-    console.log("Trip detail", id);
+    setTripSelected(travels?.find((travel) => travel.id === id));
+    setIsTripDetailModalOpen(true);
   };
 
   const handleTripEdit = (id: string) => {
@@ -43,7 +54,11 @@ export const LandingPage = () => {
     console.log("Trip delete", id);
   };
 
-  const handleCreateTrip = () => {
+  const handleTripCreate = (trip: TravelCreation) => {
+    console.log("Trip create", trip);
+  };
+
+  const handleCreateTripModal = () => {
     setIsTripCreationModalOpen(true);
   };
 
@@ -52,8 +67,19 @@ export const LandingPage = () => {
       <TripCreationModal
         isOpen={isTripCreationModalOpen}
         onClose={() => setIsTripCreationModalOpen(false)}
+        onTripCreation={(trip) => {
+          handleTripCreate(trip);
+          setIsTripCreationModalOpen(false);
+        }}
       />
-      <NavigationBar onCreateTrip={handleCreateTrip} />
+      {isTripDetailModalOpen && (
+        <TripDetailModal
+          isOpen={isTripDetailModalOpen}
+          onClose={() => setIsTripDetailModalOpen(false)}
+          trip={tripSelected}
+        />
+      )}
+      <NavigationBar onCreateTrip={handleCreateTripModal} />
       <div className="mt-12 flex justify-center items-center flex-col">
         <h1 className="font-normal text-3xl">The places you dream of</h1>
         <span className="font-normal text-xl">Let's live new adventures</span>
@@ -76,7 +102,7 @@ export const LandingPage = () => {
           />
         </div>
       </div>
-      <div className="flex flex-wrap w-2/3 m-auto justify-center items-center">
+      <div className="flex flex-wrap w-11/12 md:w-2/3 m-auto justify-center items-center">
         {travels
           ?.filter((travel) => {
             if (!search) {
