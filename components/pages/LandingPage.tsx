@@ -7,10 +7,10 @@ import {
   TravelStatus,
 } from "@/features/travels/interfaces";
 import { useState } from "react";
-import { ButtonGroup } from "../components/ButtonGroup/ButtonGroup";
-import { NavigationBar } from "../components/NavigationBar/NavigationBar";
-import { SearchBar } from "../components/SearchBar/SearchBar";
-import { TripCard } from "../components/TripCard/TripCard";
+import { ButtonGroup } from "../ButtonGroup/ButtonGroup";
+import { NavigationBar } from "../NavigationBar/NavigationBar";
+import { SearchBar } from "../SearchBar/SearchBar";
+import { TripCard } from "../TripCard/TripCard";
 
 enum TripStatus {
   All = "All",
