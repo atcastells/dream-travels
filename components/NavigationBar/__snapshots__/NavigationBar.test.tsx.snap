@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NavigationBar renders 1`] = `
+<button
+  class="rounded-full bg-white text-black px-2"
+>
+  <span
+    class="m-4"
+  >
+    Create new trip
+  </span>
+</button>
+`;

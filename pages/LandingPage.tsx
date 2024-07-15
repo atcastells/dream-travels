@@ -1,0 +1,116 @@
+import { TripCreationModal } from "@/components/TripCreationModal/TripCreationModal";
+import { useTravels } from "@/features/travels/hooks";
+import { Travel, TravelStatus } from "@/features/travels/interfaces";
+import { useState } from "react";
+import { ButtonGroup } from "../components/ButtonGroup/ButtonGroup";
+import { NavigationBar } from "../components/NavigationBar/NavigationBar";
+import { SearchBar } from "../components/SearchBar/SearchBar";
+import { TripCard } from "../components/TripCard/TripCard";
+
+enum TripStatus {
+  All = "All",
+  Upcoming = "Upcoming",
+  Completed = "Completed",
+}
+
+export const LandingPage = () => {
+  const [filters, setFilters] = useState<Partial<Travel>>({});
+  const [search, setSearch] = useState<string>("");
+  const [isTripCreationModalOpen, setIsTripCreationModalOpen] =
+    useState<boolean>(false);
+
+  const { travels } = useTravels(filters);
+
+  const tripStatus = [
+    TripStatus.All,
+    TripStatus.Upcoming,
+    TripStatus.Completed,
+  ];
+
+  const handleSearch = (search: string) => {
+    setSearch(search);
+  };
+
+  const handleTripDetail = (id: string) => {
+    console.log("Trip detail", id);
+  };
+
+  const handleTripEdit = (id: string) => {
+    console.log("Trip edit", id);
+  };
+
+  const handleTripDelete = (id: string) => {
+    console.log("Trip delete", id);
+  };
+
+  const handleCreateTrip = () => {
+    setIsTripCreationModalOpen(true);
+  };
+
+  return (
+    <div>
+      <TripCreationModal
+        isOpen={isTripCreationModalOpen}
+        onClose={() => setIsTripCreationModalOpen(false)}
+      />
+      <NavigationBar onCreateTrip={handleCreateTrip} />
+      <div className="mt-12 flex justify-center items-center flex-col">
+        <h1 className="font-normal text-3xl">The places you dream of</h1>
+        <span className="font-normal text-xl">Let's live new adventures</span>
+        <div className="mt-4">
+          <SearchBar onSearch={handleSearch} />
+          <ButtonGroup
+            buttonText={tripStatus}
+            onSelect={(index) => {
+              if (index === 0) {
+                setFilters({
+                  ...filters,
+                  status: undefined,
+                });
+              } else if (index === 1) {
+                setFilters({ status: TravelStatus.TODO });
+              } else if (index === 2) {
+                setFilters({ status: TravelStatus.DONE });
+              }
+            }}
+          />
+        </div>
+      </div>
+      <div className="flex flex-wrap w-2/3 m-auto justify-center items-center">
+        {travels
+          ?.filter((travel) => {
+            if (!search) {
+              return true;
+            }
+
+            const introduction = travel.introduction
+              ? travel.introduction.toLowerCase()
+              : "";
+            const title = travel.title ? travel.title.toLowerCase() : "";
+            const description = travel.description
+              ? travel.description.toLowerCase()
+              : "";
+
+            return (
+              introduction.includes(search.toLowerCase()) ||
+              title.includes(search.toLowerCase()) ||
+              description.includes(search.toLowerCase())
+            );
+          })
+          .map((travel, index) => (
+            <div
+              key={index}
+              className="flex flex-col items-center justify-center m-4"
+            >
+              <TripCard
+                onDetail={handleTripDetail}
+                onEdit={handleTripEdit}
+                onDelete={handleTripDelete}
+                travel={travel}
+              />
+            </div>
+          ))}
+      </div>
+    </div>
+  );
+};
