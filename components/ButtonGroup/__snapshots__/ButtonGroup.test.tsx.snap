@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render buttons 1`] = `
+<button
+  class="py-2 border-grey-200 border rounded-l-full rounded-r-none bg-gray-100 rounded-full bg-white text-black px-2"
+>
+  All
+</button>
+`;

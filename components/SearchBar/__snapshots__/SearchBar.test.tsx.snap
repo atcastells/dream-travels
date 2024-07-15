@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders search bar 1`] = `
+<body>
+  <div>
+    <div
+      class="flex rounded-full border border-gray-200 p-1"
+    >
+      <input
+        class="rounded-full bg-white text-black px-2 outline-none"
+        placeholder="Search trips"
+        type="text"
+        value=""
+      />
+      <button
+        class="bg-black p-1 rounded-full bg-white text-black px-2"
+      >
+        <span
+          class="m-2 text-xs text-white"
+        >
+          Search
+        </span>
+      </button>
+    </div>
+  </div>
+</body>
+`;
