@@ -18,7 +18,7 @@ enum TripStatus {
   Completed = "Completed",
 }
 
-export const LandingPage = () => {
+export const Landing = () => {
   const [filters, setFilters] = useState<Partial<Travel>>({});
   const [search, setSearch] = useState<string>("");
   const [isTripCreationModalOpen, setIsTripCreationModalOpen] =
