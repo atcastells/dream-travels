@@ -14,6 +14,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        {/* favicon */}
+        <link rel="icon" href="/favicon.png" />
+        {/* meta tags */}
+      </head>
       <body>
         <ReactQueryProvider>
           <main>{children}</main>
