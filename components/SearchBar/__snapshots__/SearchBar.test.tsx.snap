@@ -13,7 +13,7 @@ exports[`renders search bar 1`] = `
         value=""
       />
       <button
-        class="bg-black p-1 rounded-full bg-white text-black px-2"
+        class="bg-black p-1 rounded-full px-2"
       >
         <span
           class="m-2 text-xs text-white"

@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ItineraryInput renders correctly 1`] = `
+<body>
+  <div>
+    <div
+      class="flex flex-col w-full gap-2 items-end bg-gray-100 rounded-lg p-2"
+    >
+      <div
+        class="flex flex-row w-full gap-2"
+      >
+        <button
+          class="border border-gray-300 w-20 bg-white flex flex-row justify-center items-center rounded-full px-2"
+        >
+          <div
+            aria-expanded="false"
+            aria-haspopup="menu"
+            class="flex flex-row items-center justify-between w-full p-2"
+            data-headlessui-state=""
+            id="headlessui-menu-button-:r2:"
+          >
+            <span
+              class="font-normal text-xs text-black"
+            >
+              1
+            </span>
+            <svg
+              aria-hidden="true"
+              class="h-3 w-3"
+              data-slot="icon"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="m19.5 8.25-7.5 7.5-7.5-7.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+             
+          </div>
+        </button>
+        <div
+          class="w-3/4"
+        >
+          <div
+            class="flex flex-col text-sm rounded-full flex-1 "
+          >
+            <div
+              class="flex rounded-full border bg-white border-gray-200 p-1"
+            >
+              <input
+                class="rounded-full bg-white text-black px-2 outline-none w-full p-1"
+                id="location-0"
+                name="location"
+                placeholder="Location"
+                type="text"
+                value="Paris"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="w-3/4 flex mr-6"
+      >
+        <div
+          class="flex flex-col text-sm flex-1 "
+        >
+          <div
+            class="flex rounded-xl border bg-white border-gray-200 p-1"
+          >
+            <textarea
+              class="bg-white text-black px-2 outline-none w-full"
+              id="description-0"
+              name="description"
+              placeholder="Description"
+              rows="4"
+            >
+              Eiffel Tower
+            </textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

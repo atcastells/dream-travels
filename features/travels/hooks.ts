@@ -5,8 +5,13 @@ import {
   useQuery,
   useQueryClient,
 } from "@tanstack/react-query";
-import { Travel } from "./interfaces";
-import { getTravels, updateTravel } from "./service";
+import { Travel, TravelCreation } from "./interfaces";
+import {
+  createTravel,
+  deleteTravel,
+  getTravels,
+  updateTravel,
+} from "./service";
 
 export const TRAVEL_KEY = "travels";
 
@@ -21,6 +26,42 @@ export const useTravels = (
   });
 
   return { travels: data, ...rest };
+};
+
+export const useCreateTravel = () => {
+  const queryClient = useQueryClient();
+  const { mutate, mutateAsync } = useMutation({
+    mutationFn: (travel: TravelCreation) => {
+      return createTravel(travel);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [TRAVEL_KEY],
+      });
+    },
+  });
+
+  return {
+    createTravel: mutate,
+    createTravelAsync: mutateAsync,
+  };
+};
+
+export const useDeleteTravel = () => {
+  const queryClient = useQueryClient();
+  const { mutate, mutateAsync } = useMutation({
+    mutationFn: deleteTravel,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [TRAVEL_KEY],
+      });
+    },
+  });
+
+  return {
+    deleteTravel: mutate,
+    deleteTravelAsync: mutateAsync,
+  };
 };
 
 export const useUpdateTravel = () => {

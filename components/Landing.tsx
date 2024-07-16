@@ -1,6 +1,11 @@
 import { TripCreationModal } from "@/components/TripCreationModal/TripCreationModal";
 import { TripDetailModal } from "@/components/TripDetailModal/TripDetailModal";
-import { useTravels } from "@/features/travels/hooks";
+import {
+  useCreateTravel,
+  useDeleteTravel,
+  useTravels,
+  useUpdateTravel,
+} from "@/features/travels/hooks";
 import {
   Travel,
   TravelCreation,
@@ -11,6 +16,7 @@ import { ButtonGroup } from "./ButtonGroup/ButtonGroup";
 import { NavigationBar } from "./NavigationBar/NavigationBar";
 import { SearchBar } from "./SearchBar/SearchBar";
 import { TripCard } from "./TripCard/TripCard";
+import { TripEditionModal } from "./TripEditionModal/TripEditionModal";
 
 enum TripStatus {
   All = "All",
@@ -27,9 +33,15 @@ export const Landing = () => {
   const [isTripDetailModalOpen, setIsTripDetailModalOpen] =
     useState<boolean>(false);
 
+  const [isTripEditionModalOpen, setIsTripEditionModalOpen] =
+    useState<boolean>(false);
+
   const [tripSelected, setTripSelected] = useState<Travel | undefined>();
 
   const { travels } = useTravels(filters);
+  const { deleteTravel } = useDeleteTravel();
+  const { updateTravel } = useUpdateTravel();
+  const { createTravel } = useCreateTravel();
 
   const tripStatus = [
     TripStatus.All,
@@ -47,19 +59,30 @@ export const Landing = () => {
   };
 
   const handleTripEdit = (id: string) => {
-    console.log("Trip edit", id);
+    setTripSelected(travels?.find((travel) => travel.id === id));
+    setIsTripEditionModalOpen(true);
   };
 
   const handleTripDelete = (id: string) => {
-    console.log("Trip delete", id);
+    deleteTravel(id);
   };
 
   const handleTripCreate = (trip: TravelCreation) => {
-    console.log("Trip create", trip);
+    createTravel(trip);
   };
 
   const handleCreateTripModal = () => {
     setIsTripCreationModalOpen(true);
+  };
+
+  const handleCloseTripDetail = () => {
+    setIsTripDetailModalOpen(false);
+    setTripSelected(undefined);
+  };
+
+  const handleCloseTripEdition = () => {
+    setIsTripEditionModalOpen(false);
+    setTripSelected(undefined);
   };
 
   return (
@@ -75,11 +98,23 @@ export const Landing = () => {
       {isTripDetailModalOpen && (
         <TripDetailModal
           isOpen={isTripDetailModalOpen}
-          onClose={() => setIsTripDetailModalOpen(false)}
+          onClose={() => handleCloseTripDetail()}
           trip={tripSelected}
         />
       )}
-      <NavigationBar onCreateTrip={handleCreateTripModal} />
+
+      {isTripEditionModalOpen && tripSelected && (
+        <TripEditionModal
+          isOpen={isTripEditionModalOpen}
+          onClose={() => handleCloseTripEdition()}
+          onTripEdit={(trip) => {
+            updateTravel(trip);
+            handleCloseTripEdition;
+          }}
+          trip={tripSelected}
+        />
+      )}
+      <NavigationBar onClickCreateTrip={handleCreateTripModal} />
       <div className="mt-12 flex justify-center items-center flex-col">
         <h1 className="font-normal text-3xl">The places you dream of</h1>
         <span className="font-normal text-xl">Let's live new adventures</span>

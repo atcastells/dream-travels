@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders TripCard component 1`] = `
+<body>
+  <div>
+    <div
+      class="flex flex-row h-60 bg-gray-100 rounded-r-lg"
+    >
+      <div
+        class="w-3/4 md:w-1/2 relative"
+      >
+        <img
+          alt="Trip to Portugal"
+          class="object-cover h-full w-full rounded-l-lg"
+          src="https://source.unsplash.com/1600x900/?portugal"
+        />
+      </div>
+      <div
+        class="flex flex-col w-3/4 md:w-1/2 p-4"
+      >
+        <h1
+          class="text-3xl mb-8"
+        >
+          Trip to Portugal
+        </h1>
+        <p
+          class="text-lg mb-4 line-clamp-3"
+        >
+          Classic tour of Portugal's vibrant cities and cultural heritage, including Lisbon, Porto, Fatima and the flamboyant architecture of Sintra.
+        </p>
+        <div
+          class="flex flex-row justify-between mb-4"
+        >
+          <span
+            class="underline cursor-pointer"
+          >
+            See trip detail
+          </span>
+          <div
+            class="flex gap-4"
+          >
+            <span
+              class="underline cursor-pointer"
+            >
+              Edit
+            </span>
+            <span
+              class="underline text-red-400 cursor-pointer"
+            >
+              Delete
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

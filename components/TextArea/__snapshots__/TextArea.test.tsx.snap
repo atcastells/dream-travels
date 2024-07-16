@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders text area 1`] = `
+<body>
+  <div>
+    <div
+      class="flex flex-col text-sm"
+    >
+      <div
+        class="flex rounded-xl border bg-white border-gray-200 p-1"
+      >
+        <textarea
+          class="bg-white text-black px-2 outline-none w-full"
+          rows="4"
+        />
+      </div>
+    </div>
+  </div>
+</body>
+`;

@@ -6,7 +6,7 @@ import { NavigationBar } from "./NavigationBar";
 test("NavigationBar renders", () => {
   const onCreateTripSpy = jest.fn();
 
-  render(<NavigationBar onCreateTrip={onCreateTripSpy} />);
+  render(<NavigationBar onClickCreateTrip={onCreateTripSpy} />);
   expect(screen.getByText("Create new trip")).toBeTruthy();
   expect(screen.getByRole("button")).toBeTruthy();
 

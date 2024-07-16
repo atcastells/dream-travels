@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders input 1`] = `
+<input
+  class="rounded-full bg-white text-black px-2 outline-none w-full"
+  type="text"
+/>
+`;

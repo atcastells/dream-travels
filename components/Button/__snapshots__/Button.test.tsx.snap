@@ -2,7 +2,7 @@
 
 exports[`Button renders children 1`] = `
 <button
-  class="text-red-400 rounded-full bg-white text-black px-2"
+  class="text-red-400 rounded-full px-2"
 >
   Click me
 </button>
